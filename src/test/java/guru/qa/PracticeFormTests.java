@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
@@ -35,13 +36,13 @@ public class PracticeFormTests {
 
     @BeforeAll
     static void setUp() {
-        //Configuration.holdBrowserOpen = true;
+        Configuration.holdBrowserOpen = true;
         Configuration.baseUrl = "https://demoqa.com";
         Configuration.browserSize = "1920x1080";
     }
 
     @Test
-    void fillAndSubmitStudentRegistrationForm() {
+    void fillSubmitCloseRegistrationForm() {
         open(studentRegistrationForm);
 
         //Filling and submitting the form
@@ -64,7 +65,7 @@ public class PracticeFormTests {
         $(byText(city)).click();
         $("#submit").click();
 
-        //Assertions
+        //Asserting the data is present
         $("#example-modal-sizes-title-lg").shouldHave(
                 text("Thanks for submitting the form"));
         $(".modal-body").shouldHave(
@@ -77,5 +78,10 @@ public class PracticeFormTests {
                 text("cat.png"),
                 text(address),
                 text(state + " " + city));
+
+        //Closing the modal
+        $("#closeLargeModal").click();
+        //Asserting the modal is closed
+        $("#example-modal-sizes-title-lg").shouldNotBe(visible);
         }
     }
