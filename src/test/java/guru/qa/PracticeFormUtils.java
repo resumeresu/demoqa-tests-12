@@ -19,4 +19,8 @@ public class PracticeFormUtils {
             $(byText(s)).click();
         }
     }
+
+    public static String getValueCell(String label) {
+        return "//td[preceding-sibling::td='" + label + "']";
+    }
 }

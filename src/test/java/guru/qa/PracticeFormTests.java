@@ -65,17 +65,17 @@ public class PracticeFormTests {
 
         //Asserting the data is present
         $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
-        $x("//td[preceding-sibling::td='Student Name']").shouldHave(text(fistName + " " + lastName));
-        $x("//td[preceding-sibling::td='Student Email']").shouldHave(text(email));
-        $x("//td[preceding-sibling::td='Gender']").shouldHave(text(gender));
-        $x("//td[preceding-sibling::td='Mobile']").shouldHave(text(mobile));
-        $x("//td[preceding-sibling::td='Date of Birth']").shouldHave(text(birthDay + " " + birthMonth + "," + birthYear));
-        $x("//td[preceding-sibling::td='Subjects']").shouldHave(text(String.join(", ",subjectsFull)));
-        $x("//td[preceding-sibling::td='Hobbies']").shouldHave(text(String.join(", ",hobbies)));
-        $x("//td[preceding-sibling::td='Picture']").shouldHave(text("cat.png"));
-        $x("//td[preceding-sibling::td='Address']").shouldHave(text(address));
-        $x("//td[preceding-sibling::td='Mobile']").shouldHave(text(mobile));
-        $x("//td[preceding-sibling::td='State and City']").shouldHave(text(state + " " + city));
+        $x(getValueCell("Student Name")).shouldHave(text(fistName + " " + lastName));
+        $x(getValueCell("Student Email")).shouldHave(text(email));
+        $x(getValueCell("Gender")).shouldHave(text(gender));
+        $x(getValueCell("Mobile")).shouldHave(text(mobile));
+        $x(getValueCell("Date of Birth")).shouldHave(text(birthDay + " " + birthMonth + "," + birthYear));
+        $x(getValueCell("Subjects")).shouldHave(text(String.join(", ",subjectsFull)));
+        $x(getValueCell("Hobbies")).shouldHave(text(String.join(", ",hobbies)));
+        $x(getValueCell("Picture")).shouldHave(text("cat.png"));
+        $x(getValueCell("Address")).shouldHave(text(address));
+        $x(getValueCell("Mobile")).shouldHave(text(mobile));
+        $x(getValueCell("State and City")).shouldHave(text(state + " " + city));
 
         //Closing the modal
         $("#closeLargeModal").click();
