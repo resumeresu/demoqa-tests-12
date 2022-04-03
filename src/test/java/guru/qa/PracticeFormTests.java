@@ -8,8 +8,7 @@ import java.util.List;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.*;
 import static guru.qa.PracticeFormUtils.*;
 
 
@@ -65,18 +64,18 @@ public class PracticeFormTests {
         $("#submit").click();
 
         //Asserting the data is present
-        $("#example-modal-sizes-title-lg").shouldHave(
-                text("Thanks for submitting the form"));
-        $(".modal-body").shouldHave(
-                text(fistName + " " + lastName),
-                text(email),
-                text(gender),
-                text(mobile),
-                text(birthDay + " " + birthMonth + "," + birthYear),
-                text(String.join(", ",subjectsFull)),
-                text("cat.png"),
-                text(address),
-                text(state + " " + city));
+        $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
+        $x("//td[preceding-sibling::td='Student Name']").shouldHave(text(fistName + " " + lastName));
+        $x("//td[preceding-sibling::td='Student Email']").shouldHave(text(email));
+        $x("//td[preceding-sibling::td='Gender']").shouldHave(text(gender));
+        $x("//td[preceding-sibling::td='Mobile']").shouldHave(text(mobile));
+        $x("//td[preceding-sibling::td='Date of Birth']").shouldHave(text(birthDay + " " + birthMonth + "," + birthYear));
+        $x("//td[preceding-sibling::td='Subjects']").shouldHave(text(String.join(", ",subjectsFull)));
+        $x("//td[preceding-sibling::td='Hobbies']").shouldHave(text(String.join(", ",hobbies)));
+        $x("//td[preceding-sibling::td='Picture']").shouldHave(text("cat.png"));
+        $x("//td[preceding-sibling::td='Address']").shouldHave(text(address));
+        $x("//td[preceding-sibling::td='Mobile']").shouldHave(text(mobile));
+        $x("//td[preceding-sibling::td='State and City']").shouldHave(text(state + " " + city));
 
         //Closing the modal
         $("#closeLargeModal").click();
