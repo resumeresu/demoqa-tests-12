@@ -43,11 +43,14 @@ public class PracticeFormTests {
     void fillSubmitCloseRegistrationForm() {
         open(studentRegistrationForm);
 
+        executeJavaScript("$('footer').remove()");
+        executeJavaScript("$('#fixedban').remove()");
+
         //Filling and submitting the form
         $("#firstName").setValue(fistName);
         $("#lastName").setValue(lastName);
         $("#userEmail").setValue(email);
-        $(byText(gender)).click();
+        $("#gender-radio-3").parent().click();
         $("#userNumber").setValue(mobile);
         $("#dateOfBirthInput").click();
         $(".react-datepicker__month-select").selectOption(birthMonth);
