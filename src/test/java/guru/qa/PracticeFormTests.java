@@ -5,6 +5,7 @@ import com.github.javafaker.Faker;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import java.util.List;
+import java.util.Locale;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
@@ -16,7 +17,7 @@ import static java.lang.String.format;
 
 public class PracticeFormTests {
 
-    Faker faker = new Faker();
+    Faker faker = new Faker(new Locale("de"));
 
     //Path
     String studentRegistrationForm = "/automation-practice-form";
