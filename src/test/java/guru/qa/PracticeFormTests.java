@@ -1,6 +1,7 @@
 package guru.qa;
 
 import com.codeborne.selenide.Configuration;
+import com.github.javafaker.Faker;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import java.util.List;
@@ -15,25 +16,27 @@ import static java.lang.String.format;
 
 public class PracticeFormTests {
 
+    Faker faker = new Faker();
+
     //Path
     String studentRegistrationForm = "/automation-practice-form";
     //Test data
-    String fistName = "Nikolay",
-            lastName = "Serpukhov",
+    String fistName = faker.name().firstName(),
+            lastName = faker.name().lastName(),
             fullName = format("%s %s", fistName, lastName),
-            email = "nserpukhov@ya.ru",
+            email = faker.internet().emailAddress(),
             gender = "Other",
             mobile = "1234567890",
             birthDay = "28",
             birthMonth = "February",
             birthYear = "1992",
-            dateOfBirthFormatted = birthMonth + " " + birthDay + "th, " + birthYear;
+            dateOfBirthFormatted = birthMonth + " " + birthDay + "th, " + birthYear,
+            address = faker.address().fullAddress(),
+            state = "NCR",
+            city = "Delhi";
     List<String> subjectsParts = List.of("Che", "Ma", "Ph");
     List<String> subjectsFull = List.of("Chemistry", "Maths", "Physics");
     List<String> hobbies = List.of("Reading", "Music");
-    String address = "Street, House Number",
-            state = "NCR",
-            city = "Delhi";
 
     @BeforeAll
     static void setUp() {
