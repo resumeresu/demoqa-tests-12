@@ -67,18 +67,19 @@ public class PracticeFormTests {
                 .submit();
 
         //Asserting data in the modal
-        registrationForm.tableTitle().shouldHave(text("Thanks for submitting the form"));
-        registrationForm.tableRow("Student Name").shouldHave(text(fullName));
-        registrationForm.tableRow("Student Email").shouldHave(text(email));
-        registrationForm.tableRow("Gender").shouldHave(text(gender));
-        registrationForm.tableRow("Mobile").shouldHave(text(mobile));
-        registrationForm.tableRow("Date of Birth").shouldHave(text(birthDay + " " + birthMonth + "," + birthYear));
-        registrationForm.tableRow("Subjects").shouldHave(text(String.join(", ", subjectsFull)));
-        registrationForm.tableRow("Hobbies").shouldHave(text(String.join(", ", hobbies)));
-        registrationForm.tableRow("Picture").shouldHave(text("cat.png"));
-        registrationForm.tableRow("Address").shouldHave(text(address));
-        registrationForm.tableRow("Mobile").shouldHave(text(mobile));
-        registrationForm.tableRow("State and City").shouldHave(text(state + " " + city));
+
+        registrationForm.checkTableHeaderHasText("Thanks for submitting the form")
+                .checkTableRowHasText("Student Name", fullName)
+                .checkTableRowHasText("Student Email", email)
+                .checkTableRowHasText("Gender", gender)
+                .checkTableRowHasText("Mobile", mobile)
+                .checkTableRowHasText("Date of Birth", birthDay + " " + birthMonth + "," + birthYear)
+                .checkTableRowHasText("Subjects", String.join(", ", subjectsFull))
+                .checkTableRowHasText("Hobbies", String.join(", ", hobbies))
+                .checkTableRowHasText("Picture", "cat.png")
+                .checkTableRowHasText("Address", address)
+                .checkTableRowHasText("Mobile", mobile)
+                .checkTableRowHasText("State and City", state + " " + city);
 
 
         //Closing the modal

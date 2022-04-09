@@ -6,6 +6,7 @@ import pages.components.CalendarComponent;
 
 import java.util.List;
 
+import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
@@ -106,6 +107,16 @@ public class RegistrationFormPage {
 
     public void submit() {
         $("#submit").click();
+    }
+
+    public RegistrationFormPage checkTableHeaderHasText(String text) {
+        tableTitle().shouldHave(text(text));
+        return this;
+    }
+
+    public RegistrationFormPage checkTableRowHasText(String label, String text) {
+        tableRow(label).shouldHave(text(text));
+        return this;
     }
 
     public void closeModal() {
