@@ -8,7 +8,6 @@ import pages.RegistrationFormPage;
 
 import java.util.List;
 
-import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 import static java.lang.String.format;
 import static utils.RandomUtils.*;
@@ -67,7 +66,6 @@ public class PracticeFormTests {
                 .submit();
 
         //Asserting data in the modal
-
         registrationForm.checkTableHeaderHasText("Thanks for submitting the form")
                 .checkTableRowHasText("Student Name", fullName)
                 .checkTableRowHasText("Student Email", email)
@@ -80,7 +78,6 @@ public class PracticeFormTests {
                 .checkTableRowHasText("Address", address)
                 .checkTableRowHasText("Mobile", mobile)
                 .checkTableRowHasText("State and City", state + " " + city);
-
 
         //Closing the modal
         registrationForm.closeModal();
