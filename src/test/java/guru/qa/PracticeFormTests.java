@@ -18,9 +18,6 @@ public class PracticeFormTests {
     Faker faker = new Faker();
     RegistrationFormPage registrationForm = new RegistrationFormPage();
 
-    //Path
-    String path = "/automation-practice-form";
-
     //Test data
     List<String> subjectsParts = List.of("Che", "Ma", "Ph");
     List<String> subjectsFull = List.of("Chemistry", "Maths", "Physics");
@@ -48,7 +45,7 @@ public class PracticeFormTests {
     void fillSubmitCloseRegistrationForm() {
 
         //Preparing
-        registrationForm.openPage(path);
+        registrationForm.openPage();
 
         //Filling and submitting the form
         registrationForm.setFirstName(fistName)
