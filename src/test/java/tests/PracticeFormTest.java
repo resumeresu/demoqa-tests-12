@@ -1,4 +1,4 @@
-package guru.qa;
+package tests;
 
 import com.codeborne.selenide.Configuration;
 import com.github.javafaker.Faker;
@@ -8,12 +8,11 @@ import pages.RegistrationFormPage;
 
 import java.util.List;
 
-import static com.codeborne.selenide.Condition.visible;
 import static java.lang.String.format;
 import static utils.RandomUtils.*;
 
 
-public class PracticeFormTests {
+public class PracticeFormTest {
 
     Faker faker = new Faker();
     RegistrationFormPage registrationForm = new RegistrationFormPage();
@@ -34,12 +33,6 @@ public class PracticeFormTests {
             address = faker.address().fullAddress(),
             state = "NCR",
             city = "Delhi";
-
-    @BeforeAll
-    static void setUp() {
-        Configuration.baseUrl = "https://demoqa.com";
-        Configuration.browserSize = "1920x1080";
-    }
 
     @Test
     void fillSubmitCloseRegistrationForm() {
@@ -77,10 +70,8 @@ public class PracticeFormTests {
                 .checkTableRowHasText("State and City", state + " " + city);
 
         //Closing the modal
-        registrationForm.closeModal();
-
-        //Asserting the modal is closed
-        registrationForm.modal().shouldNotBe(visible);
+        registrationForm.closeModal()
+                .checkModalClosed();
     }
 
 
