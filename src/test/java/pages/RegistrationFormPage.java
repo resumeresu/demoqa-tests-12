@@ -122,8 +122,9 @@ public class RegistrationFormPage {
     }
 
     @Step
-    public void submit() {
+    public RegistrationFormPage submit() {
         $("#submit").click();
+        return this;
     }
 
     @Step

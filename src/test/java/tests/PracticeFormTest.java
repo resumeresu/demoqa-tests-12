@@ -1,6 +1,7 @@
 package tests;
 
 import com.github.javafaker.Faker;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import pages.RegistrationFormPage;
 
@@ -33,13 +34,10 @@ public class PracticeFormTest extends BaseTest {
             city = "Delhi";
 
     @Test
+    @DisplayName("Fill and submit registration form")
     void fillSubmitCloseRegistrationForm() {
-
-        //Preparing
-        registrationForm.openPage();
-
-        //Filling and submitting the form
-        registrationForm.setFirstName(fistName)
+        registrationForm.openPage()
+                .setFirstName(fistName)
                 .setLastName(lastName)
                 .setEmail(email)
                 .setGender(gender)
@@ -51,10 +49,8 @@ public class PracticeFormTest extends BaseTest {
                 .setAddress(address)
                 .setState(state)
                 .setCity(city)
-                .submit();
-
-        //Asserting data in the modal
-        registrationForm.checkTableHeaderHasText("Thanks for submitting the form")
+                .submit()
+                .checkTableHeaderHasText("Thanks for submitting the form")
                 .checkTableRowHasText("Student Name", fullName)
                 .checkTableRowHasText("Student Email", email)
                 .checkTableRowHasText("Gender", gender)
@@ -65,12 +61,8 @@ public class PracticeFormTest extends BaseTest {
                 .checkTableRowHasText("Picture", "cat.png")
                 .checkTableRowHasText("Address", address)
                 .checkTableRowHasText("Mobile", mobile)
-                .checkTableRowHasText("State and City", state + " " + city);
-
-        //Closing the modal
-        registrationForm.closeModal()
+                .checkTableRowHasText("State and City", state + " " + city)
+                .closeModal()
                 .checkModalClosed();
     }
-
-
 }
