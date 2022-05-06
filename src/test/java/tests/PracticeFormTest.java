@@ -1,8 +1,6 @@
 package tests;
 
-import com.codeborne.selenide.Configuration;
 import com.github.javafaker.Faker;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import pages.RegistrationFormPage;
 
@@ -12,7 +10,7 @@ import static java.lang.String.format;
 import static utils.RandomUtils.*;
 
 
-public class PracticeFormTest {
+public class PracticeFormTest extends BaseTest {
 
     Faker faker = new Faker();
     RegistrationFormPage registrationForm = new RegistrationFormPage();
