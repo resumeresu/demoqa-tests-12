@@ -23,9 +23,10 @@ public class BaseTest {
         String login = config.login();
         String password = config.password();
         String remote = System.getProperty("remote", "selenoid.autotests.cloud/wd/hub");
+        String browserSize = System.getProperty("browserSize", "1920x1080");
 
         Configuration.baseUrl = "https://demoqa.com";
-        Configuration.browserSize = "1920x1080";
+        Configuration.browserSize = browserSize;
         Configuration.remote = "https://" + login + ":" + password + "@" + remote;
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
