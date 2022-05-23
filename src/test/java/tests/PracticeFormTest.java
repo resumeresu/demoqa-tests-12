@@ -1,19 +1,17 @@
-package guru.qa;
+package tests;
 
-import com.codeborne.selenide.Configuration;
 import com.github.javafaker.Faker;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import pages.RegistrationFormPage;
 
 import java.util.List;
 
-import static com.codeborne.selenide.Condition.visible;
 import static java.lang.String.format;
 import static utils.RandomUtils.*;
 
 
-public class PracticeFormTests {
+public class PracticeFormTest extends BaseTest {
 
     Faker faker = new Faker();
     RegistrationFormPage registrationForm = new RegistrationFormPage();
@@ -35,20 +33,11 @@ public class PracticeFormTests {
             state = "NCR",
             city = "Delhi";
 
-    @BeforeAll
-    static void setUp() {
-        Configuration.baseUrl = "https://demoqa.com";
-        Configuration.browserSize = "1920x1080";
-    }
-
     @Test
+    @DisplayName("Fill and submit registration form")
     void fillSubmitCloseRegistrationForm() {
-
-        //Preparing
-        registrationForm.openPage();
-
-        //Filling and submitting the form
-        registrationForm.setFirstName(fistName)
+        registrationForm.openPage()
+                .setFirstName(fistName)
                 .setLastName(lastName)
                 .setEmail(email)
                 .setGender(gender)
@@ -60,10 +49,8 @@ public class PracticeFormTests {
                 .setAddress(address)
                 .setState(state)
                 .setCity(city)
-                .submit();
-
-        //Asserting data in the modal
-        registrationForm.checkTableHeaderHasText("Thanks for submitting the form")
+                .submit()
+                .checkTableHeaderHasText("Thanks for submitting the form")
                 .checkTableRowHasText("Student Name", fullName)
                 .checkTableRowHasText("Student Email", email)
                 .checkTableRowHasText("Gender", gender)
@@ -74,14 +61,8 @@ public class PracticeFormTests {
                 .checkTableRowHasText("Picture", "cat.png")
                 .checkTableRowHasText("Address", address)
                 .checkTableRowHasText("Mobile", mobile)
-                .checkTableRowHasText("State and City", state + " " + city);
-
-        //Closing the modal
-        registrationForm.closeModal();
-
-        //Asserting the modal is closed
-        registrationForm.modal().shouldNotBe(visible);
+                .checkTableRowHasText("State and City", state + " " + city)
+                .closeModal()
+                .checkModalClosed();
     }
-
-
 }
